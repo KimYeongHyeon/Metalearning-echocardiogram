@@ -29,6 +29,8 @@ python inference.py --image_path <path_to_image>
 
 Replace `<path_to_image>` with the path to the echocardiogram image you wish to analyze. The script will output the left ventricular chamber quantification results.
 
+[model download](https://drive.google.com/drive/folders/1xXmYt1wmqtiqmpLlJc3sjbWxK7ogRP5v?usp=share_link)
+
 ## Sample Images
 
 Some sample echocardiogram images are included in the `sample_images` directory. You can use these images to test the inference script or to visualize the model's predictions.
