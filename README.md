@@ -4,6 +4,14 @@
 
 This repository contains the code for the paper "Few-shot Quantification of Left Ventricular Chamber in the Standard Echocardiogram via Model-agnostic Meta Learning."
 
+## Environments
+We tested with:
+- torch==1.12.0
+- torchvision==0.13.1
+- learn2learn==0.1.7
+- segmentation-models-pytorch==0.3.0
+- timm==0.4.12
+
 ## Meta-train
 
 To train the meta-learning model, run the following command:
