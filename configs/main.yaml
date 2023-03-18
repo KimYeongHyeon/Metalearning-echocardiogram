@@ -1,0 +1,72 @@
+default:
+    # # - _self_
+    # - model: test
+    # # - dataset
+    # - metalearning: FOMAML
+
+# model:
+#    _target_: segmentation_models_pytorch.DeepLabV3Plus
+#    _convert_: all
+#    encoder_name: resnet50
+#    in_channels: 3
+#    classes: 5
+#    activation: softmax
+
+data:
+    _target_: utils.DataModule.DataModule
+    root_dir: dataset
+    img_size: [256, 256] # [height, width]
+    augment: true
+
+
+    num_channels: 3
+    target: PLAX
+    num_tasks: 50
+    shot: 20 # 0, 10, 20, 30
+    num_workers: 0
+    way: 3
+    batch_size: $(data.shot)*$(data.way)*2
+ 
+   
+trainer:
+    _target_: pytorch_lightning.Trainer
+    _convert_: all
+    val_check_interval: 1
+    max_epochs: 50
+    gpus: 1
+    
+    # gradient_clip_val: None 
+    
+    
+model:
+    _target_: utils.model.BaseSystem
+    _convert_: all
+    algorithm: 'MAML'
+    lr: 5e-3
+    first_order: True
+    allow_nograd: True
+    allow_unused: True
+    adaptation_steps: 10
+    fast_lr: 0.03
+    shot: ${data.shot}
+
+    # encoder_name: resnet50
+    # encoder_name: densenet121
+    encoder_name: tu-efficientnet_b0
+
+    in_channels: ${data.num_channels}
+    classes: 5
+    activation: softmax
+    std: 7
+    way: ${data.way}
+    device: cuda
+ckpt_path: null
+pretrained: null
+
+
+hydra:
+    output_subdir: config
+    run:
+        # dir: outputs/${model.algorithm}/${data.target}/${data.shot}/${now:%Y-%m-%d}_${now:%H-%M-%S}
+        dir: outputs/${model.algorithm}_FO_${model.first_order}_AN_${model.allow_nograd}/${data.target}/${data.shot}
+        
