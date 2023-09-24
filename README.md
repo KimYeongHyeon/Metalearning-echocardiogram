@@ -43,6 +43,11 @@ Replace `<path_to_image>` with the path to the echocardiogram image you wish to 
 
 Some sample echocardiogram images are included in the `sample_images` directory. You can use these images to test the inference script or to visualize the model's predictions.
 
+## Dataset
+
+To access the dataset, please visit the following URL: [data download](https://drive.google.com/file/d/1MuIyXgZOkx1WwM0rT5qn4JeA8gbKMRDl/view?usp=sharing). Please note that you will need to request download permissions to access the data. 
+Once your request is approved, you will be able to download the datset.
+
 ## Citation
 
 Feel free to modify and use this code for your own research. If you use this code, please cite the original paper.
