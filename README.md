@@ -2,7 +2,8 @@
 
 ## Overview
 
-This repository contains the code for the paper "Few-shot Quantification of Left Ventricular Chamber in the Standard Echocardiogram via Model-agnostic Meta Learning."
+This repository contains the code for the paper "Quantification of Left Ventricular Mass in Multiple Views of Echocardiograms using Model-agnostic Meta Learning in a Few-Shot Setting".
+![Figure1](https://github.com/KimYeongHyeon/Metalearning-echocardiogram/blob/main/Figure%201.png?raw=true)
 
 ## Environments
 We tested with:
