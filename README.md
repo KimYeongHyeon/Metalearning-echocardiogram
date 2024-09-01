@@ -17,14 +17,19 @@ We tested with:
 
 To train the meta-learning model, run the following command:
 ```shell
-python meta_train.py
+python train.py data.shot={5,10,20,30} data.target={2CH, 4CH, PLAX, PSAX} model.algorithm={MAML, MetaCurvature, MetaSGD} model.network={unet, DeepLabV3Plus}
 ```
+
 This will train the model using the meta-training dataset.
+The model is then automatically created in the following folder
+```shell
+outputs-MAML_FO_True_AN_True-{data.target}-{data.shot}-lightning_logs-{version_0,1,2,...}
+```
 
 ## Meta-test
 To evaluate the meta-learning model on the meta-testing dataset, run the following command:
 ```shell
-python meta_test.py
+python test.py --shot={5, 10, 20, 30} --target={2CH, 4CH, PLAX, PSAX} --version={0,1,2,..} --algorithm={MAML, MetaCurvature, MetaSGD} --network={unet, DeepLabV3Plus}
 ```
 
 This will evaluate the model's performance on the meta-testing dataset and output the results.
@@ -33,16 +38,10 @@ This will evaluate the model's performance on the meta-testing dataset and outpu
 
 To perform inference on a new echocardiogram image, run the following command:
 ```shell
-python inference.py --image_path <path_to_image>
+python inference.py --target={2CH, 4CH, PLAX, PSAX} --version={0,1,2,..} --network={unet, DeepLabV3Plus} --algorithm={MAML, MetaCurvature, MetaSGD}
 ```
 
-Replace `<path_to_image>` with the path to the echocardiogram image you wish to analyze. The script will output the left ventricular chamber quantification results.
-
 [model download](https://drive.google.com/drive/folders/1xXmYt1wmqtiqmpLlJc3sjbWxK7ogRP5v?usp=share_link)
-
-## Sample Images
-
-Some sample echocardiogram images are included in the `sample_images` directory. You can use these images to test the inference script or to visualize the model's predictions.
 
 ## Dataset
 
