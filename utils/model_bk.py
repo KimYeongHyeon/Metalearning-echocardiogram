@@ -36,14 +36,14 @@ from utils.utils import *
 #         return model
 
 class BaseSystem(pl.LightningModule, ABC):
-    def __init__(self, network: str, lr: float, adaptation_steps: int, fast_lr: float, 
+    def __init__(self, lr: float, adaptation_steps: int, fast_lr: float, 
                  std: float, first_order: bool, allow_nograd: bool, 
                  shot: int, way: int,
                  algorithm: str, allow_unused: bool,
                  encoder_name: str, in_channels: int, classes: int, activation: str,
                  device: str):
         super().__init__()
-        self.network = network
+        
         self.lr = lr
         self.fast_lr = fast_lr
         self.std = std
@@ -59,7 +59,7 @@ class BaseSystem(pl.LightningModule, ABC):
         # self.adapt_transform = adapt_transform
         
         self.encoder_name = encoder_name
-        self.in_channels = in_channels                                                                                                                                                                             
+        self.in_channels = in_channels
         self.classes = classes
         self.activation = activation
         self.allow_unused = allow_unused
@@ -67,19 +67,11 @@ class BaseSystem(pl.LightningModule, ABC):
         self.img_size = None
         # self.save_hyperparameters = True
     def _get_model(self):
-        model = get_basemodel(self.network, self.encoder_name, self.in_channels, self.classes, self.activation)
-        # if self.network.lower() == 'Unet'.lower():
-        #     model = smp.Unet(   
-        #         encoder_name = self.encoder_name,
-        #         in_channels = self.in_channels,
-        #         classes = self.classes,
-        #         activation = self.activation)
-        # elif self.network.lower() == 'DeepLabV3Plus'.lower():
-        #     model = smp.DeepLabV3Plus(
-        #             encoder_name = self.encoder_name,
-        #             in_channels = self.in_channels,
-        #             classes = self.classes,
-        #             activation = self.activation)
+        model = smp.DeepLabV3Plus(
+                encoder_name = self.encoder_name,
+                in_channels = self.in_channels,
+                classes = self.classes,
+                activation = self.activation)
 
         if self.algorithm == 'MAML':
             model = l2l.algorithms.MAML(model, 
@@ -257,28 +249,24 @@ class BaseSystem(pl.LightningModule, ABC):
     #     torch.set_grad_enabled(True)
     #     self.adapt(batch, mode="test")
     #     torch.set_grad_enabled(False)
-# self.network, self.encoder_name, self.in_channels, self.classes, self.activation
-def get_basemodel(network: str = 'Unet', 
-                  encoder_name: str = 'tu-efficientnet_b0', 
-                  in_channels: int = 3, 
-                  classes: int = 5, 
-                  activation: str = 'softmax') -> nn.Module:
-    if network.lower() == 'Unet'.lower():
+
+def get_basemodel(CFG):
+    model_name = CFG['model'].lower()
+    if model_name == 'Unet'.lower():
         model = smp.Unet(
-            encoder_name=encoder_name,
-            encoder_weights=None,
-            in_channels=in_channels,
-            classes=classes,
-            activation=activation,
-            
+            encoder_name=CFG['backbone'],        # choose encoder, e.g. mobilenet_v2 or efficientnet-b7
+            # encoder_weights="imagenet",     # use `imagenet` pre-trained weights for encoder initialization # 수정필요
+            in_channels=3,                  # model input channels (1 for gray-scale images, 3 for RGB, etc.)
+            classes=5,                      # model output channels (number of classes in your dataset)
+            activation='softmax'
         )
-    elif network.lower() == 'DeepLabV3Plus'.lower():
+    elif model_name == 'DeepLabV3Plus'.lower():
         model = smp.DeepLabV3Plus(
-            encoder_name=encoder_name,
-            encoder_weights=None,
-            in_channels=in_channels,
-            classes=classes,
-            activation=activation
+            encoder_name=CFG['backbone'],        # choose encoder, e.g. mobilenet_v2 or efficientnet-b7
+            # encoder_weights="imagenet",     # use `imagenet` pre-trained weights for encoder initialization # 수정필요
+            in_channels=3,                  # model input channels (1 for gray-scale images, 3 for RGB, etc.)
+            classes=5,                      # model output channels (number of classes in your dataset)
+            activation='softmax'
         )
     return model
 

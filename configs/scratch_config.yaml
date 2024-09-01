@@ -1,0 +1,16 @@
+height: 256
+width: 256
+view: "2CH"  # Default view
+lr: 0.005
+scheduler: "None"
+reducelr_factor: 0.99
+min_lr: 0.00001
+device: "cuda"  # Default device
+epochs: 50
+patience: 10
+batch_size: 2
+std: 7
+model: "Unet"
+backbone: "tu-efficientnet_b0"
+version: "Scratch_train100"  # This will be adjusted based on the view
+save_path: "saved_model/Unet_Scratch_train100"  # This will also adjust based on the view

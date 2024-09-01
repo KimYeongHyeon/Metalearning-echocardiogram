@@ -14,8 +14,8 @@ default:
 
 data:
     _target_: utils.DataModule.DataModule
-    root_dir: /home/ohpely/kohi/dataset # 방법을 찾아야
-    img_size: [256, 256] # [height, width] 
+    root_dir: dataset
+    img_size: [256, 256] # [height, width]
     augment: true
 
 
@@ -33,7 +33,7 @@ trainer:
     _convert_: all
     val_check_interval: 1
     max_epochs: 50
-    devices: 1
+    gpus: 1
     
     # gradient_clip_val: None 
     
@@ -41,7 +41,6 @@ trainer:
 model:
     _target_: utils.model.BaseSystem
     _convert_: all
-    network: 'unet'
     algorithm: 'MAML'
     lr: 5e-3
     first_order: True

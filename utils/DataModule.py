@@ -45,7 +45,7 @@ class DataModule(pl.LightningDataModule):
         self.num_workers = num_workers
         self.augment = augment
         self.prepare_data_per_node = False
-
+        self.allow_zero_length_dataloader_with_multiple_devices = False
 
         self._train_dataset = None
         self._val_dataset = None
