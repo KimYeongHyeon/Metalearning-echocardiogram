@@ -45,8 +45,55 @@ python inference.py --target={2CH, 4CH, PLAX, PSAX} --version={0,1,2,..} --netwo
 
 ## Dataset
 
-To access the dataset, please visit the following URL: [data download](https://drive.google.com/file/d/1MuIyXgZOkx1WwM0rT5qn4JeA8gbKMRDl/view?usp=sharing). Please note that you will need to request download permissions to access the data. 
-Once your request is approved, you will be able to download the datset.
+This study used three publicly available echocardiography datasets, each processed with additional labeling for our experiments.  
+**The results in this repository can only be reproduced using the labeled versions** provided through our controlled-access link, not the raw datasets alone.
+
+### 1. EchoNet-LVH (PLAX view)
+- **Source:** Stanford University, EchoNet Project  
+- **Original URL:** [https://echonet.github.io/dataset/echonet-lvh](https://echonet.github.io/dataset/echonet-lvh)  
+- **License/Access:** Publicly available for research use upon agreement to the dataset license.  
+- **Modifications in this study:** Added custom labels specific to our task.  
+- **Access to labeled version:** Please request via the Google Drive link below.
+
+### 2. TMED-2 (PSAX view)
+- **Source:** Tufts Medical Center  
+- **Original URL:** [https://tmed.cs.tufts.edu/echonet/](https://tmed.cs.tufts.edu/echonet/) *(replace with actual)*  
+- **License/Access:** Access requires a request to the data owner.  
+- **Modifications in this study:** Added custom labels specific to our task.  
+- **Access to labeled version:** Please request via the Google Drive link below.
+
+### 3. CAMUS (A2C and A4C views, 1-, 5-, and 10-shot scenarios)
+- **Source:** University Hospital of St Etienne, France  
+- **Original URL:** [https://www.creatis.insa-lyon.fr/Challenge/camus](https://www.creatis.insa-lyon.fr/Challenge/camus)  
+- **License/Access:** Free for research use after registration and acceptance of terms.  
+- **Modifications in this study:** Added custom labels specific to our task.  
+- **Access to labeled version:** Please request via the Google Drive link below.
+
+---
+
+### Access to Labeled Versions
+The labeled datasets used in this study are derived from the above publicly available datasets, with additional annotations created by our team.
+
+To request access to the labeled datasets:
+
+1. Visit the following link:  
+   [Request Access to Labeled Datasets](https://drive.google.com/file/d/1MuIyXgZOkx1WwM0rT5qn4JeA8gbKMRDl/view?usp=sharing)
+2. Click **"Request Access"**.
+3. Provide your **name, affiliation, intended use, and confirmation that you have legitimate access to the original datasets**.
+4. Your request will be reviewed, and access will be granted to qualified researchers.
+5. Upon approval, you will receive download access to the labeled dataset package.
+
+---
+
+### Important Notes
+- This repository **does not redistribute the original datasets** without modification.
+- Access will only be granted to researchers who confirm they already have (or are eligible to obtain) access to the original datasets.
+- Use of the labeled datasets is subject to the terms of both the **original dataset licenses** and our **custom labeling license agreement**.
+
+---
+
+### Citation
+If you use the labeled datasets from this repository, please cite both the original dataset sources and our work.
 
 ## Citation
 
