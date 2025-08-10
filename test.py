@@ -290,7 +290,7 @@ if __name__ == '__main__':
     parser.add_argument('--way', type=int, default=3)
     parser.add_argument('--allow_nograd', type=bool, default=True)
     parser.add_argument('--first_order', type=bool, default=True)
-    parser.add_argument('--algorithm', type=str, default='MAML', choices=['MAML', 'MetaSGD', 'MetaCurvature'])
+    parser.add_argument('--algorithm', type=str, default='MAML', choices=['MAML', 'MetaSGD', 'MetaCurvature', 'ANIL'])
     
     parser.add_argument('--dataset_dir', default='dataset',  help='directory to dataset')
     parser.add_argument('--width', default=256, type=int, help='width for model input')
@@ -302,9 +302,8 @@ if __name__ == '__main__':
     parser.add_argument('--epochs', default=50, type=int)
     parser.add_argument('--patience', default=10, type=int)
     
-    # parser.add_argument('--type', required=True, choices=['loss','metric','last'], help='model type')
     
-    parser.add_argument('--network', default='DeepLabV3Plus')
+    parser.add_argument('--network', default='DeepLabV3Plus', choices=['DeepLabV3Plus', 'UNet', 'SegFormer'])
     parser.add_argument('--backbone', default='tu-efficientnet_b0')
     parser.add_argument('--version', required=True)
     parser.add_argument('--use_wandb', default=False)
