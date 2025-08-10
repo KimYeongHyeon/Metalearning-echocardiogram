@@ -314,28 +314,6 @@ if __name__ == '__main__':
     args = vars(args)
 
     args['save_dir'] = os.path.join('saved_model', f"Meta_{args['target']}_shot_{args['shot']}_version_{args['version']}")
-
-    # if os.path.exists(os.path.join('saved_model', args.save_dir)):
-    #     print("Already exists version")
-    #     exit()
-    # if not os.path.exists(args['save_dir']):
-    #     print("Wrong! Check target, shot, version!")
-    #     exit()
-    
-    # if args['type'] in ['loss', 'metric']:
-    #     args['model_path'] = os.path.join(args['save_dir'], f"best_{args['type']}_epoch-{args['target']}.pth")
-    #     if not os.path.exists(args['model_path']):
-    #         print("Wrong model load! Check target, type!")
-    #         exit()
-        
-            
-    # if args['type'] in ['last']:
-    #     args['model_path'] = os.path.join(args['save_dir'], f"last_epoch-{args['target']}.pth")
-    #     if not os.path.exists(args['model_path']):
-    #         print("Wrong model load! Check target, type!")
-    #         exit()
-    
-    # print(args['model_path'])
     args['task'] = set(['PLAX', 'PSAX', '2CH', '4CH']) - set([args['target']])
     args['img_size'] = [args['height'], args['width']]
     main(args)

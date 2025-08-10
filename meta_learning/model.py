@@ -36,7 +36,6 @@ class BaseSystem(pl.LightningModule, ABC):
 
         self.allow_nograd = allow_nograd
         self.first_order = first_order
-        self.adapt_transform = adapt_transform
         
         self.encoder_name = encoder_name
         self.in_channels = in_channels
